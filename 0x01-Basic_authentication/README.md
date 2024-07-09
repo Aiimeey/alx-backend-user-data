@@ -1,28 +1,42 @@
-Basic Authentication Project
+# Simple API
 
-This project focuses on implementing Basic Authentication for a simple API using Python and Flask. Authentication is a fundamental aspect of secure web applications, allowing users to access protected resources by providing their credentials.
-Learning Objectives
+Simple HTTP API for playing with `User` model.
 
-By completing this project, you will gain a solid understanding of:
 
-    What authentication means in the context of web development.
-    How Basic Authentication works, including encoding credentials with Base64.
-    Implementing Basic Authentication using Flask and Python.
-    Securing API endpoints and handling authorization errors.
+## Files
 
-Project Structure
+### `models/`
 
-The project consists of several tasks, each building upon the previous one to create a fully functional Basic Authentication system. Here’s a brief overview of what each task entails:
+- `base.py`: base of all models of the API - handle serialization to file
+- `user.py`: user model
 
-    Error Handlers: Implementing error handlers for 401 (Unauthorized) and 403 (Forbidden) responses.
-    Auth Class: Creating an Auth class to manage authentication requirements.
-    Request Validation: Implementing request validation to ensure secure API access.
-    BasicAuth Class: Creating a BasicAuth class that extends Auth for Basic Authentication.
-    Base64 Handling: Implementing methods to handle Base64 encoding and decoding for Basic Authentication.
-    User Credentials: Validating and retrieving user credentials from Base64 encoded strings.
-    User Object Retrieval: Implementing methods to retrieve and validate user objects based on credentials.
-    Integration and Testing: Integrating authentication mechanisms into the Flask application and testing API endpoints.
+### `api/v1`
 
-Resources
+- `app.py`: entry point of the API
+- `views/index.py`: basic endpoints of the API: `/status` and `/stats`
+- `views/users.py`: all users endpoints
 
-For a deeper understanding, consider exploring resources on REST API Authentication Mechanisms, Base64 encoding, Flask framework, and HTTP Authorization headers.
+
+## Setup
+
+```
+$ pip3 install -r requirements.txt
+```
+
+
+## Run
+
+```
+$ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
+```
+
+
+## Routes
+
+- `GET /api/v1/status`: returns the status of the API
+- `GET /api/v1/stats`: returns some stats of the API
+- `GET /api/v1/users`: returns the list of users
+- `GET /api/v1/users/:id`: returns an user based on the ID
+- `DELETE /api/v1/users/:id`: deletes an user based on the ID
+- `POST /api/v1/users`: creates a new user (JSON parameters: `email`, `password`, `last_name` (optional) and `first_name` (optional))
+- `PUT /api/v1/users/:id`: updates an user based on the ID (JSON parameters: `last_name` and `first_name`)
