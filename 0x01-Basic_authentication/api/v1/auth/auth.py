@@ -14,6 +14,9 @@ class Auth:
         path_with_slash = path if path.endswith('/') else path + '/'
 
         for excluded_path in excluded_paths:
+            f excluded_path.endswith('*'):
+                if path.startswith(excluded_path[:-1]):
+                    return False
             if path == excluded_path or path_with_slash == excluded_path:
                 return False
 
