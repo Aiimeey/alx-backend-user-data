@@ -14,12 +14,12 @@ app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 
-if os.environ['AUTH_TYPE'] == 'auth':
+if os.environ.get('AUTH_TYPE') == 'auth':
     from api.v1.auth.auth import Auth
     auth = Auth()
 
 
-@app.before_request()
+@app.before_request
 def before_request() -> str:
     """handle auth before request"""
     if auth is None:
