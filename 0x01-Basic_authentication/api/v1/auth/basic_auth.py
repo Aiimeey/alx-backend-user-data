@@ -59,7 +59,7 @@ class BasicAuth(Auth):
 
         found_user = users[0]
 
-        if not found_user.is_valid_password(user_pwd):
-            return None
+        if found_user.is_valid_password(user_pwd):
+            return found_user
 
-        return found_user
+        return None
